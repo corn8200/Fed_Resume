@@ -44,6 +44,9 @@
       .contact-pair { display: inline-flex; gap: 8px; white-space: nowrap; }
       .contact-line .sep { color: var(--muted); }
       .links-row .sep { color: var(--muted); }
+      /* Volunteer: enforce one-line entries */
+      .volunteer .entry.one-line { margin: 2pt 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .volunteer .entry.one-line .oneline { white-space: nowrap; }
       /* Improve general wrapping */
       body { overflow-wrap: anywhere; hyphens: auto; }
       .tail { display: block; }
@@ -278,16 +281,19 @@
         {% if r.volunteer %}
         <section class="section volunteer">
           <h2>Volunteer Experience</h2>
-          {% for v in r.volunteer %}
-          <div class="entry{% if v.start and '2025' in v.start %} future{% endif %}">
-            <div><strong>{{ v.organization }}</strong>{% if v.location %}, <span class="muted">{{ v.location }}</span>{% endif %}</div>
-            <div class="muted">{{ v.role }}</div>
-            <div class="meta muted">{{ v.start|fmtdate }} – {{ 'Present' if v.present else (v.end|fmtdate) }}</div>
-            {% if v.highlights %}
-            <ul>
-              {% for h in v.highlights %}<li>{{ h }}</li>{% endfor %}
-            </ul>
-            {% endif %}
+          {# Render at most two one‑line entries #}
+          {% for v in (r.volunteer or [])[:2] %}
+          <div class="entry one-line{% if v.start and '2025' in v.start %} future{% endif %}">
+            <span class="oneline">
+              <strong>{{ v.organization }}</strong>
+              {% if v.role %} — <span class="muted">{{ v.role }}</span>{% endif %}
+              {% if v.location %} — <span class="muted">{{ v.location }}</span>{% endif %}
+              {% if v.start %}
+                <span class="muted">
+                  — {{ v.start|fmtdate }}{% if v.present %} – Present{% elif v.end %} – {{ v.end|fmtdate }}{% endif %}
+                </span>
+              {% endif %}
+            </span>
           </div>
           {% endfor %}
         </section>
