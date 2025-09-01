@@ -21,7 +21,7 @@
       .header { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
       .header-left { flex: 1 1 auto; }
       .header-right { flex: 0 0 auto; text-align: right; }
-      .links a { color: inherit; text-decoration: none; overflow-wrap: anywhere; word-break: break-word; hyphens: auto; }
+      .links a, .links-row a { color: inherit; text-decoration: none; overflow-wrap: anywhere; word-break: break-word; hyphens: auto; }
       .links a:hover { text-decoration: underline; }
       .section { margin-top: 8px; }
       .entry { margin: 6px 0; }
@@ -37,6 +37,8 @@
       .topbar { position: sticky; top: 0; display: flex; justify-content: end; padding: 6px 0; background: rgba(255,255,255,0.9); }
       .kv { display: inline-flex; gap: 8px; flex-wrap: wrap; font-size: 9.5pt; }
       .kv b { font-weight: 600; }
+      .links-row { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; font-size: 9.5pt; }
+      .links-row .sep { color: var(--muted); }
       /* Improve general wrapping */
       body { overflow-wrap: anywhere; hyphens: auto; }
       .tail { display: block; }
@@ -65,7 +67,7 @@
         /* Let flex blocks wrap naturally in print */
         .header { align-items: flex-start; }
         /* Smaller link text in print */
-        .links, .header-right, .links a { font-size: 9.5pt !important; }
+        .links, .header-right, .links a, .links-row { font-size: 9.5pt !important; }
         /* Optional trimming for very long bullet lists when marked */
         .bullets--long li:nth-child(n+7) { display: none; }
         /* Optional future-dated volunteer hiding when marked */
@@ -97,14 +99,14 @@
             {% if r.eligibilities %}<div><b>Hiring Eligibility:</b> {{ r.eligibilities | join(', ') }}</div>{% endif %}
           </div>
           {% endif %}
-        </div>
         {% if r.contact.links %}
-        <div class="header-right links" style="font-size: 9.5pt;">
-          {% for label, url in r.contact.links.items() %}
-            <div><strong>{{ label }}:</strong> <a href="{{ url }}">{{ url }}</a></div>
-          {% endfor %}
-        </div>
+          <div class="links-row">
+            {% for label, url in r.contact.links.items() %}
+              <span class="link-item"><strong>{{ label }}:</strong> <a href="{{ url }}">{{ url }}</a></span>{% if not loop.last %}<span class="sep">•</span>{% endif %}
+            {% endfor %}
+          </div>
         {% endif %}
+        </div>
       </header>
 
       {% if r.summary %}
