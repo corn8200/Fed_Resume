@@ -38,6 +38,9 @@
       .kv { display: inline-flex; gap: 8px; flex-wrap: wrap; font-size: 9.5pt; }
       .kv b { font-weight: 600; }
       .links-row { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; font-size: 9.5pt; }
+      .contact-line { display: inline-flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+      .contact-pair { display: inline-flex; gap: 8px; white-space: nowrap; }
+      .contact-line .sep { color: var(--muted); }
       .links-row .sep { color: var(--muted); }
       /* Improve general wrapping */
       body { overflow-wrap: anywhere; hyphens: auto; }
@@ -48,26 +51,31 @@
         .page { padding: 0; }
         /* Page + typography */
         @page { size: Letter; margin: 0.5in; }
-        body { font-size: 10.5pt; line-height: 1.25; }
+        body { font-size: 10pt; line-height: 1.25; }
         /* Display adjustments to let natural breaks happen */
-        .row, .header, .section, .entry { display: block; }
+        .header, .section, .entry { display: block; }
         /* Tighter spacing for print */
         .section { margin-top: 0; padding: 0 0 6pt 0; }
         .entry { margin: 4pt 0; }
-        h1 { margin: 0 0 6pt; }
-        h2 { margin: 0 0 6pt; }
-        h3 { margin: 0 0 6pt; }
+        h1 { margin: 0 0 5pt; }
+        h2 { margin: 0 0 5pt; }
+        h3 { margin: 0 0 4pt; }
         p { margin: 0 0 4pt; }
-        ul, ol { padding-left: 1.1em; margin: 0 0 4pt; }
-        li { margin: 0 0 2pt; }
+        ul, ol { padding-left: 1.05em; margin: 0 0 3pt; }
+        li { margin: 0 0 1.5pt; }
         /* Keep headings with following content */
         h2, h3 { break-after: avoid; page-break-after: avoid; }
         /* Widow/orphan control where supported */
         p, li { widows: 2; orphans: 2; }
+        .section, .entry, .entry-body { break-inside: auto; page-break-inside: auto; }
+        .job-head { break-inside: avoid; page-break-inside: avoid; break-after: avoid; }
         /* Let flex blocks wrap naturally in print */
         .header { align-items: flex-start; }
+        .tail { column-count: 2; column-gap: 18pt; }
+        .tail .section { break-inside: avoid; page-break-inside: avoid; }
         /* Smaller link text in print */
         .links, .header-right, .links a, .links-row { font-size: 9.5pt !important; }
+        .links-row { margin-top: 2pt; }
         /* Optional trimming for very long bullet lists when marked */
         .bullets--long li:nth-child(n+7) { display: none; }
         /* Optional future-dated volunteer hiding when marked */
@@ -83,13 +91,11 @@
       <header class="header">
         <div class="header-left">
           <h1>{{ r.contact.name }}</h1>
-          <div class="row muted" style="font-size: 9.5pt;">
-            <div>{{ r.contact.email }}</div>
-            <div>•</div>
-            <div>{{ r.contact.phone }}</div>
+          <div class="contact-line muted" style="font-size: 9.5pt;">
+            <div class="contact-pair"><span>{{ r.contact.email }}</span><span class="sep">•</span><span>{{ r.contact.phone }}</span></div>
             {% if r.contact.location %}
-              <div>•</div>
-              <div>{{ r.contact.location }}</div>
+              <span class="sep">•</span>
+              <span>{{ r.contact.location }}</span>
             {% endif %}
           </div>
           {% if r.citizenship or r.veterans_preference or r.eligibilities %}
@@ -151,7 +157,7 @@
               <div class="muted">Duties: {{ w.duties }}</div>
             {% endif %}
             {% if w.highlights %}
-            <ul>
+            <ul class="bullets--long">
               {% for h in w.highlights %}
                 <li>{{ h }}</li>
               {% endfor %}
@@ -230,7 +236,7 @@
         <section class="section volunteer">
           <h2>Volunteer Experience</h2>
           {% for v in r.volunteer %}
-          <div class="entry">
+          <div class="entry{% if v.start and '2025' in v.start %} future{% endif %}">
             <div><strong>{{ v.organization }}</strong>{% if v.location %}, <span class="muted">{{ v.location }}</span>{% endif %}</div>
             <div class="muted">{{ v.role }}</div>
             <div class="meta muted">{{ v.start|fmtdate }} – {{ 'Present' if v.present else (v.end|fmtdate) }}</div>
