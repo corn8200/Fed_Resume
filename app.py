@@ -59,13 +59,23 @@ def validate_resume(r: Dict[str, Any]) -> List[str]:
                 errors.append(f"{ctx}.title is required")
             if w.get("hours_per_week") in (None, ""):
                 errors.append(f"{ctx}.hours_per_week is required")
+            else:
+                hpw = w.get("hours_per_week")
+                if not isinstance(hpw, (int, float)):
+                    errors.append(f"{ctx}.hours_per_week must be a number")
+                else:
+                    if hpw <= 0:
+                        errors.append(f"{ctx}.hours_per_week must be > 0")
             start = w.get("start")
             if not start:
                 errors.append(f"{ctx}.start is required")
             else:
                 if not isinstance(start, str) or not YYYY_MM_RE.match(start):
                     errors.append(f"{ctx}.start must be YYYY-MM")
-            present = bool(w.get("present", False))
+            present_raw = w.get("present", False)
+            present = bool(present_raw)
+            if present_raw not in (True, False) and present_raw is not None:
+                errors.append(f"{ctx}.present must be a boolean if provided")
             end = w.get("end")
             if not present:
                 if not end:

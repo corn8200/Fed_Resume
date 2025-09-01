@@ -10,10 +10,14 @@
     }
   },
   "summary": "Results-driven analyst with 8+ years across federal and private sectors. Specializes in data-driven policy analysis, program evaluation, and process improvement with measurable outcomes.",
+  "citizenship": "U.S. Citizen",
+  "veterans_preference": "No",
+  "eligibilities": ["Status Candidate (Merit Promotion)", "Public Trust"],
   "work": [
     {
       "employer": "Department of Example (DoE)",
       "location": "Washington, DC",
+      "address": "123 Constitution Ave NW, Washington, DC 20001",
       "title": "Management and Program Analyst",
       "series_grade": "GS-0343-12",
       "start": "2021-06",
@@ -22,6 +26,7 @@
       "salary": "$92,000/year",
       "supervisor": "J. Supervisor, (555) 987-6543",
       "can_contact_supervisor": true,
+      "duties": "Plan, analyze, and evaluate program operations for multiple grant portfolios.",
       "highlights": [
         "Led cross-functional sprint to streamline grants intake, cutting cycle time 35% (21 → 14 days).",
         "Built Power BI dashboards used weekly by SES to monitor KPIs across 5 programs.",
@@ -52,6 +57,10 @@
       "completion_date": "May 2017"
     }
   ],
+  "training": [
+    "Federal Budgeting for Non-Budgeteers (24 hrs)",
+    "Agile Project Management — Practitioner Workshop (16 hrs)"
+  ],
   "certifications": [
     "PMP (Project Management Professional)",
     "Certified ScrumMaster (CSM)"
@@ -63,9 +72,29 @@
   "clearances": [
     "Public Trust (Moderate Risk) — Active"
   ],
+  "awards": [
+    "DoE Team Excellence Award (2023)"
+  ],
+  "publications": [
+    "Example A., 2020. Data-Driven Program Evaluation, Journal of Analytics."
+  ],
+  "affiliations": [
+    "Project Management Institute (PMI)"
+  ],
+  "volunteer": [
+    {
+      "organization": "Local Food Bank",
+      "location": "Arlington, VA",
+      "role": "Volunteer Coordinator",
+      "start": "2019-02",
+      "present": true,
+      "highlights": [
+        "Coordinated 30+ volunteers monthly; increased distribution capacity by 20%."
+      ]
+    }
+  ],
   "references": [
     { "name": "Pat Reference", "phone": "(555) 222-3344", "email": "pat.ref@example.com" },
     { "name": "Sam Former Manager", "phone": "(555) 333-4455" }
   ]
 }
-
