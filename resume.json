@@ -1,100 +1,132 @@
 {
   "contact": {
-    "name": "Alex Example",
-    "email": "alex.example@example.com",
-    "phone": "(555) 123-4567",
-    "location": "Arlington, VA",
+    "name": "John W. Cornelius",
+    "email": "corn82@icloud.com",
+    "phone": "(304) 268-4985",
+    "location": "Harpers Ferry, WV",
     "links": {
-      "LinkedIn": "https://www.linkedin.com/in/alex-example",
-      "GitHub": "https://github.com/alex-example"
+      "LinkedIn": "https://www.linkedin.com/in/john-w-cornelius",
+      "Website": "https://jcornelius.net/cv"
     }
   },
-  "summary": "Results-driven analyst with 8+ years across federal and private sectors. Specializes in data-driven policy analysis, program evaluation, and process improvement with measurable outcomes.",
+  "summary": "Operations and program manager with 20+ years of military aviation and logistics leadership and 2+ years in supply chain systems. Skilled in program management, ERP/WMS/TMS integrations, Lean Six Sigma process improvement, and risk management.",
   "citizenship": "U.S. Citizen",
-  "veterans_preference": "No",
-  "eligibilities": ["Status Candidate (Merit Promotion)", "Public Trust"],
+  "veterans_preference": "10-point CPS",
+  "eligibilities": [
+    "Veterans’ Preference (10-pt CPS)",
+    "Veterans Employment Opportunities Act (VEOA) – Status Candidate (Merit Promotion)",
+    "TS/SCI Eligible (last investigation 2020)"
+  ],
   "work": [
     {
-      "employer": "Department of Example (DoE)",
-      "location": "Washington, DC",
-      "address": "123 Constitution Ave NW, Washington, DC 20001",
-      "title": "Management and Program Analyst",
-      "series_grade": "GS-0343-12",
-      "start": "2021-06",
+      "employer": "Allmine Paving (Tamko)",
+      "location": "WV",
+      "address": "1042 Development Dr, Inwood, WV 25428",
+      "title": "Supply Chain Systems & Operations Manager",
+      "start": "2022-09",
       "present": true,
-      "hours_per_week": 40,
-      "salary": "$92,000/year",
-      "supervisor": "J. Supervisor, (555) 987-6543",
+      "hours_per_week": 50,
+      "salary": "$165,000/year",
+      "supervisor": "Julie Weissenberger, (410) 428-8448, julie_weissenberger@allminepaving.com",
       "can_contact_supervisor": true,
-      "duties": "Plan, analyze, and evaluate program operations for multiple grant portfolios.",
+      "duties": "Direct multi-site logistics, manufacturing, and capital projects supporting asphalt production. Lead ERP, WMS, and TMS integrations to improve throughput, DIFOT, and cost efficiency. Oversee 3PL performance, compliance, safety, and predictive analytics programs. Supervise civilian staff and contractors to deliver cross-functional projects, ensuring compliance with policy and budget execution requirements.",
       "highlights": [
-        "Led cross-functional sprint to streamline grants intake, cutting cycle time 35% (21 → 14 days).",
-        "Built Power BI dashboards used weekly by SES to monitor KPIs across 5 programs.",
-        "Authored SOPs and training for 60+ staff, improving compliance audit pass rate from 82% to 97%."
+        "Improved DIFOT by 15% and delivery quality by 18% through GPS fleet tracking and supplier dashboards.",
+        "Delivered $2.3M in cost savings and achieved >99.5% inventory accuracy via ERP/WMS integration and 3PL optimization.",
+        "Increased throughput by 12% while sustaining zero OSHA recordables.",
+        "Led continuity planning and risk management initiatives to ensure supply chain resilience.",
+        "Directed mission support operations across logistics and systems.",
+        "Managed stakeholder engagement, contractor coordination, and cross-functional project delivery."
       ]
     },
     {
-      "employer": "Acme Analytics LLC",
-      "location": "Remote",
-      "title": "Data Analyst",
-      "start": "2018-01",
-      "end": "2021-05",
-      "hours_per_week": 40,
+      "employer": "U.S. Army",
+      "location": "Multiple locations",
+      "title": "Program Manager – Aviation & Logistics",
+      "start": "2000-09",
+      "end": "2022-06",
+      "hours_per_week": 60,
+      "salary": "~$65,000–$78,000/year equivalent",
+      "supervisor": "Supervisors (last 5 years) include Scott G. Ciluffo (DAC, USAACE), Donald R. Kirk (LTC), Ty L. Powell (GS-14).",
+      "can_contact_supervisor": true,
+      "duties": "Directed aviation and logistics programs across 20+ years, including combat deployments, global logistics networks, and senior-level training management. Managed Commander’s Aircrew Training Program at USAACE, supporting Commanding General and senior staff missions. Oversaw multimillion-dollar aviation supply chains, 3PL contracts, and readiness portfolios worth $48M+. Led curriculum development and training for 400+ warrant officers at Aviation Warrant Officer Basic Course. Executed precision aviation support for Special Operations Forces, Congress, and VIP missions with zero safety incidents. Supervised military and civilian personnel; developed and implemented policy, strategic plans, and budget execution processes across aviation and logistics programs.",
       "highlights": [
-        "Designed ETL to consolidate 12 data sources, reducing manual prep by 10 hrs/week.",
-        "Delivered A/B testing insights that increased conversion rate 8% QoQ.",
-        "Partnered with client executives to define metrics; shipped 15 dashboards across business units."
+        "Rated top 5% of CW3s by senior rater; recognized as Honor Graduate, WOAC (2015).",
+        "Sustained >98% operational readiness during 200+ global missions while managing multimillion-dollar budgets.",
+        "Led training and curriculum development for 400+ warrant officers; improved graduation and readiness outcomes.",
+        "Executed strategic and operational risk management, ensuring zero safety incidents in combat and peacetime missions.",
+        "Directed budget formulation and execution for multimillion-dollar programs.",
+        "Supervised and mentored staff, aligning mission support with federal policies and human capital requirements."
       ]
     }
   ],
   "education": [
     {
-      "institution": "Example State University",
-      "location": "College Town, ST",
+      "institution": "Embry-Riddle Aeronautical University",
+      "location": "",
+      "degree": "M.S.",
+      "field": "Unmanned Systems – Human Factors",
+      "gpa": "4.0",
+      "completion_date": "2020-03"
+    },
+    {
+      "institution": "Embry-Riddle Aeronautical University",
+      "location": "",
       "degree": "B.S.",
-      "field": "Economics",
-      "gpa": "3.7",
-      "completion_date": "May 2017"
+      "field": "Aeronautics",
+      "completion_date": "2012-10"
+    },
+    {
+      "institution": "Greenbrier East High School",
+      "location": "",
+      "degree": "High School Diploma",
+      "completion_date": "2002"
     }
   ],
   "training": [
-    "Federal Budgeting for Non-Budgeteers (24 hrs)",
-    "Agile Project Management — Practitioner Workshop (16 hrs)"
+    "WOCS (2007), WOBC Aviation (2008), WOAC Aviation (2015, Honor Graduate)",
+    "UH-60 Instructor Pilot Course (2013)",
+    "SERE-C High Risk (2007)"
   ],
   "certifications": [
-    "PMP (Project Management Professional)",
-    "Certified ScrumMaster (CSM)"
+    "PMP; Agile Scrum Master (Simplilearn)",
+    "Lean Six Sigma Green Belt (Lean Methods Group)",
+    "FAA Commercial Rotorcraft-Helicopter; Instrument Helicopter",
+    "FAA Flight Instructor CFI/CFII; Remote Pilot (Part 107)"
   ],
   "languages": [
-    "Spanish — Professional",
     "English — Native"
   ],
   "clearances": [
-    "Public Trust (Moderate Risk) — Active"
+    "TS/SCI Eligible — Last Investigation 2020"
   ],
   "awards": [
-    "DoE Team Excellence Award (2023)"
+    "Meritorious Service Medal",
+    "Air Medal (2)",
+    "Meritorious Unit Commendation",
+    "Valorous Unit Award",
+    "Combat Infantryman Badge",
+    "Senior Aviator Badge"
   ],
-  "publications": [
-    "Example A., 2020. Data-Driven Program Evaluation, Journal of Analytics."
-  ],
+  "publications": [],
   "affiliations": [
-    "Project Management Institute (PMI)"
+    "Night Stalker Association — Lifetime Member (160th SOAR)"
   ],
   "volunteer": [
     {
-      "organization": "Local Food Bank",
-      "location": "Arlington, VA",
-      "role": "Volunteer Coordinator",
-      "start": "2019-02",
+      "organization": "Civil Air Patrol, Martinsburg Composite Squadron",
+      "location": "Martinsburg, WV",
+      "role": "sUAS Program Lead",
+      "start": "2025-04",
       "present": true,
       "highlights": [
-        "Coordinated 30+ volunteers monthly; increased distribution capacity by 20%."
+        "Established drone training program; led 15 cadets in FAA Part 107 and TRUST prep."
       ]
     }
   ],
   "references": [
-    { "name": "Pat Reference", "phone": "(555) 222-3344", "email": "pat.ref@example.com" },
-    { "name": "Sam Former Manager", "phone": "(555) 333-4455" }
+    { "name": "Julie Weissenberger", "phone": "(410) 428-8448", "email": "julie_weissenberger@allminepaving.com" },
+    { "name": "Scott G. Ciluffo (DAC, USAACE)", "phone": "(334) 806-0282", "email": "scott.g.ciluffo.civ@mail.mil" },
+    { "name": "Austin Wiese", "phone": "(434) 944-3422", "email": "amw1872@gmail.com", "location": "Sanford, NC" }
   ]
 }

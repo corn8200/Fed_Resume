@@ -32,12 +32,14 @@
       ul { margin: 4px 0 0 18px; padding: 0; }
       li { margin: 2px 0; }
       .chips { display: flex; gap: 6px; flex-wrap: wrap; }
-      .chip { border: 1px solid #ccc; padding: 1px 6px; border-radius: 10px; font-size: 9pt; }
+      .chip { border: 1px solid #ccc; padding: 1px 6px; border-radius: 10px; font-size: 10pt; }
       .print-btn { position: sticky; top: 0; background: #fff; border: 1px solid #ccc; padding: 6px 10px; border-radius: 4px; cursor: pointer; }
       .topbar { position: sticky; top: 0; display: flex; justify-content: end; padding: 6px 0; background: rgba(255,255,255,0.9); }
-      .kv { display: inline-flex; gap: 8px; flex-wrap: wrap; font-size: 9.5pt; }
-      .kv b { font-weight: 600; }
-      .links-row { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; font-size: 9.5pt; }
+      .kv { display: inline-flex; gap: 8px; flex-wrap: wrap; font-size: 10pt; }
+      .kv b { font-weight: 600 !important; color: var(--muted) !important; }
+      .links-row { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; font-size: 10pt; }
+      /* Match link label styling to KV labels exactly */
+      .links-row strong { font-weight: 600 !important; color: var(--muted) !important; }
       .contact-line { display: inline-flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
       .contact-pair { display: inline-flex; gap: 8px; white-space: nowrap; }
       .contact-line .sep { color: var(--muted); }
@@ -45,13 +47,43 @@
       /* Improve general wrapping */
       body { overflow-wrap: anywhere; hyphens: auto; }
       .tail { display: block; }
+      /* Optional on-screen two-column preview to match print */
+      @media screen and (min-width: 960px) {
+        .tail--screen-2col {
+          -webkit-column-count: 2;
+          column-count: 2;
+          -webkit-column-gap: 18pt;
+          column-gap: 18pt;
+          -webkit-column-fill: auto;
+          column-fill: auto;
+        }
+        .tail--screen-2col .section { break-inside: avoid; -webkit-column-break-inside: avoid; }
+        .tail--screen-2col .no-split { break-inside: avoid; -webkit-column-break-inside: avoid; }
+        .tail--screen-2col .entry { break-inside: avoid; -webkit-column-break-inside: avoid; }
+      }
       @media print {
+        /* Ensure the document can paginate beyond one page */
+        html, body { height: auto !important; }
+        .page { height: auto !important; overflow: visible !important; }
         .no-print { display: none !important; }
         .topbar { display: none !important; }
         .page { padding: 0; }
         /* Page + typography */
         @page { size: Letter; margin: 0.5in; }
         body { font-size: 10pt; line-height: 1.25; }
+        /* Force Education to a new page in print */
+        .section.education { break-before: page; page-break-before: always; }
+        /* Compact mode: reclaim ~4–8 lines without content loss */
+        .compact { font-size: 10pt; line-height: 1.2; }
+        .compact h1 { margin: 0 0 4pt; }
+        .compact h2 { margin: 0 0 3pt; border-bottom: none; }
+        .compact h3 { margin: 0 0 3pt; }
+        .compact p { margin: 0 0 3pt; }
+        .compact .section { padding: 0 0 3pt 0; }
+        .compact .entry { margin: 2pt 0; }
+        .compact ul, .compact ol { padding-left: 0.9em; margin: 0 0 2pt; }
+        .compact li { margin: 0; }
+        .compact .kv, .compact .links-row, .compact .contact-line { gap: 6px; }
         /* Display adjustments to let natural breaks happen */
         .header, .section, .entry { display: block; }
         /* Tighter spacing for print */
@@ -71,19 +103,30 @@
         .job-head { break-inside: avoid; page-break-inside: avoid; break-after: avoid; }
         /* Let flex blocks wrap naturally in print */
         .header { align-items: flex-start; }
-        .tail { column-count: 2; column-gap: 18pt; }
-        .tail .section { break-inside: avoid; page-break-inside: avoid; }
+        /* Two-column tail with sane breaking in print */
+        .tail {
+          -webkit-column-count: 1;
+          column-count: 1;
+        }
+        .compact .tail { }
+        /* Do NOT split sections across columns/pages */
+        .tail .section { break-inside: avoid !important; page-break-inside: avoid !important; -webkit-column-break-inside: avoid !important; }
+        /* Keep small entries together for readability */
+        .tail .entry { break-inside: avoid !important; page-break-inside: avoid !important; -webkit-column-break-inside: avoid !important; }
+        /* Prevent end-of-page column splitting for short sections */
+        .tail .no-split { break-inside: avoid !important; page-break-inside: avoid !important; -webkit-column-break-inside: avoid !important; }
         /* Smaller link text in print */
-        .links, .header-right, .links a, .links-row { font-size: 9.5pt !important; }
+        .links, .header-right, .links a, .links-row { font-size: 10pt !important; }
+        .compact .kv, .compact .links-row, .compact .meta { font-size: 10pt !important; }
         .links-row { margin-top: 2pt; }
         /* Optional trimming for very long bullet lists when marked */
         .bullets--long li:nth-child(n+7) { display: none; }
-        /* Optional future-dated volunteer hiding when marked */
-        .volunteer .future { display: none; }
+        /* Optional future-dated volunteer hiding when marked (gated by body.hide-future) */
+        .hide-future .volunteer .future { display: none; }
       }
     </style>
   </head>
-  <body>
+  <body class="{% if compact %}compact {% endif %}{% if hide_future %}hide-future{% endif %}">
     <div class="topbar no-print">
       <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
     </div>
@@ -91,7 +134,7 @@
       <header class="header">
         <div class="header-left">
           <h1>{{ r.contact.name }}</h1>
-          <div class="contact-line muted" style="font-size: 9.5pt;">
+          <div class="contact-line muted" style="font-size: 10pt;">
             <div class="contact-pair"><span>{{ r.contact.email }}</span><span class="sep">•</span><span>{{ r.contact.phone }}</span></div>
             {% if r.contact.location %}
               <span class="sep">•</span>
@@ -170,7 +213,7 @@
       {% endif %}
 
       {% if r.education %}
-      <section class="section">
+      <section class="section education">
         <h2>Education</h2>
         {% for e in r.education %}
         <div class="entry">
@@ -231,7 +274,7 @@
       </section>
       {% endif %}
 
-      <div class="tail">
+      <div class="tail {% if columns == 2 %}tail--screen-2col{% endif %}">
         {% if r.volunteer %}
         <section class="section volunteer">
           <h2>Volunteer Experience</h2>
@@ -251,7 +294,7 @@
         {% endif %}
 
         {% if r.awards %}
-        <section class="section">
+        <section class="section no-split">
           <h2>Awards</h2>
           <ul>
             {% for a in r.awards %}<li>{{ a }}</li>{% endfor %}
@@ -260,7 +303,7 @@
         {% endif %}
 
         {% if r.publications %}
-        <section class="section">
+        <section class="section no-split">
           <h2>Publications</h2>
           <ul>
             {% for p in r.publications %}<li>{{ p }}</li>{% endfor %}
@@ -269,7 +312,7 @@
         {% endif %}
 
         {% if r.affiliations %}
-        <section class="section">
+        <section class="section no-split">
           <h2>Professional Affiliations</h2>
           <ul>
             {% for af in r.affiliations %}<li>{{ af }}</li>{% endfor %}
@@ -278,7 +321,7 @@
         {% endif %}
 
         {% if r.references %}
-        <section class="section">
+        <section class="section no-split">
           <h2>References</h2>
           {% for ref in r.references %}
           <div class="entry">

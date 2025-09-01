@@ -10,6 +10,9 @@ from flask import Flask, Response, abort, render_template, request
 
 
 app = Flask(__name__, template_folder="templates")
+# Ensure template changes hot-reload without restarting
+app.config["TEMPLATES_AUTO_RELOAD"] = True
+app.jinja_env.auto_reload = True
 
 
 YYYY_MM_RE = re.compile(r"^\d{4}-(0[1-9]|1[0-2])$")
@@ -117,6 +120,21 @@ def load_resume_from_request() -> Dict[str, Any]:
     return data
 
 
+@app.after_request
+def add_no_cache_headers(resp: Response):
+    """Prevent aggressive browser caching during iteration/dev.
+
+    Ensures Print Preview re-fetches latest HTML/CSS without app restarts.
+    """
+    try:
+        resp.headers["Cache-Control"] = "no-store, no-cache, must-revalidate, max-age=0"
+        resp.headers["Pragma"] = "no-cache"
+        resp.headers["Expires"] = "0"
+    except Exception:
+        pass
+    return resp
+
+
 @app.route("/")
 def index() -> Response:
     msg = (
@@ -141,7 +159,16 @@ def render_resume():
     errors = validate_resume(r)
     if errors:
         return Response("; ".join(errors), status=400, mimetype="text/plain")
-    return render_template("resume.html", r=r)
+    # Optional compact flag to tighten print spacing
+    compact_param = request.args.get("compact", "").strip().lower()
+    compact = compact_param in ("1", "true", "yes", "on")
+    # Optional columns toggle for on-screen preview (print remains 2 columns)
+    columns_param = (request.args.get("columns", "") or "").strip().lower()
+    columns = 2 if columns_param in ("2", "two", "true", "yes", "on") else 1
+    # Optional: hide future-dated volunteer entries in print when requested
+    hide_future_param = (request.args.get("hide_future", "") or "").strip().lower()
+    hide_future = hide_future_param in ("1", "true", "yes", "on")
+    return render_template("resume.html", r=r, compact=compact, columns=columns, hide_future=hide_future)
 
 
 if __name__ == "__main__":
