@@ -1,0 +1,71 @@
+{
+  "contact": {
+    "name": "Alex Example",
+    "email": "alex.example@example.com",
+    "phone": "(555) 123-4567",
+    "location": "Arlington, VA",
+    "links": {
+      "LinkedIn": "https://www.linkedin.com/in/alex-example",
+      "GitHub": "https://github.com/alex-example"
+    }
+  },
+  "summary": "Results-driven analyst with 8+ years across federal and private sectors. Specializes in data-driven policy analysis, program evaluation, and process improvement with measurable outcomes.",
+  "work": [
+    {
+      "employer": "Department of Example (DoE)",
+      "location": "Washington, DC",
+      "title": "Management and Program Analyst",
+      "series_grade": "GS-0343-12",
+      "start": "2021-06",
+      "present": true,
+      "hours_per_week": 40,
+      "salary": "$92,000/year",
+      "supervisor": "J. Supervisor, (555) 987-6543",
+      "can_contact_supervisor": true,
+      "highlights": [
+        "Led cross-functional sprint to streamline grants intake, cutting cycle time 35% (21 → 14 days).",
+        "Built Power BI dashboards used weekly by SES to monitor KPIs across 5 programs.",
+        "Authored SOPs and training for 60+ staff, improving compliance audit pass rate from 82% to 97%."
+      ]
+    },
+    {
+      "employer": "Acme Analytics LLC",
+      "location": "Remote",
+      "title": "Data Analyst",
+      "start": "2018-01",
+      "end": "2021-05",
+      "hours_per_week": 40,
+      "highlights": [
+        "Designed ETL to consolidate 12 data sources, reducing manual prep by 10 hrs/week.",
+        "Delivered A/B testing insights that increased conversion rate 8% QoQ.",
+        "Partnered with client executives to define metrics; shipped 15 dashboards across business units."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Example State University",
+      "location": "College Town, ST",
+      "degree": "B.S.",
+      "field": "Economics",
+      "gpa": "3.7",
+      "completion_date": "May 2017"
+    }
+  ],
+  "certifications": [
+    "PMP (Project Management Professional)",
+    "Certified ScrumMaster (CSM)"
+  ],
+  "languages": [
+    "Spanish — Professional",
+    "English — Native"
+  ],
+  "clearances": [
+    "Public Trust (Moderate Risk) — Active"
+  ],
+  "references": [
+    { "name": "Pat Reference", "phone": "(555) 222-3344", "email": "pat.ref@example.com" },
+    { "name": "Sam Former Manager", "phone": "(555) 333-4455" }
+  ]
+}
+
